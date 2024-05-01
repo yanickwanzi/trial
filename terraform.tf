@@ -3,11 +3,11 @@
 
 terraform {
 
-  cloud {
-    workspaces {
-      name = "terraform-eks"
-    }
-  }
+  # cloud {
+  #   workspaces {
+  #     name = "terraform-eks"
+  #   }
+  # }
 
   required_providers {
     aws = {
