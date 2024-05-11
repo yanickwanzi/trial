@@ -33,7 +33,8 @@ pipeline {
         }
         stage('Terraform Deploy') {              
             steps { 
-                echo 'Terraform ${params.deploy_choice} phase'           
+                echo 'Terraform ${params.deploy_choice} phase'   
+                sh "cd eks-terraform-deploy/eks-alb-controller"        
                 sh "terraform ${params.deploy_choice} --auto-approve"
             }
           }
