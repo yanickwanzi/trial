@@ -10,13 +10,14 @@ pipeline {
         stage('Terraform init') {
             steps {
                 echo 'terraform init phase'
-                sh "cd eks-alb-controller" 
+                sh 'cd eks'
                 sh 'terraform init'
             }
         }
         stage('Terraform plan') {
             steps {
                 echo 'terraform plan phase'
+                sh 'cd eks'
                 sh 'terraform plan'
             }
         }
@@ -34,7 +35,8 @@ pipeline {
         }
         stage('Terraform Deploy') {              
             steps { 
-                echo 'Terraform ${params.deploy_choice} phase'          
+                echo 'Terraform ${params.deploy_choice} phase'  
+                sh 'cd eks'
                 sh "terraform ${params.deploy_choice} --auto-approve"
             }
           }
