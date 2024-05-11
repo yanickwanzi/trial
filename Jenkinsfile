@@ -10,7 +10,7 @@ pipeline {
         stage('Terraform init') {
             steps {
                 echo 'terraform init phase'
-                sh "cd eks-terraform-deploy/eks-alb-controller" 
+                sh "cd eks-alb-controller" 
                 sh 'terraform init'
             }
         }
