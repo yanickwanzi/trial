@@ -5,7 +5,7 @@
 
 variable "profile" {
   type    = string
-  default = "default"
+  default = ""
 }
 
 variable "main-region" {
