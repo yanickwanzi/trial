@@ -9,10 +9,6 @@ module "eks" {
   cluster_name    = "dominion-cluster"
   cluster_version = "1.28"
 
-   providers = {
-     aws = aws.us-west-2
-   }
-
   cluster_endpoint_public_access = true
 
   create_kms_key              = false

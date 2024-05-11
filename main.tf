@@ -3,10 +3,8 @@
 ################################################################################
 
 module "vpc" {
-  source = "./modules/vpc"
-
+  source      = "./modules/vpc"
   main-region = var.main-region
-  profile     = var.profile
 }
 
 ################################################################################
@@ -17,7 +15,6 @@ module "eks" {
   source = "./modules/eks-cluster"
 
   main-region = var.main-region
-  profile     = var.profile
   rolearn     = var.rolearn
 
   vpc_id          = module.vpc.vpc_id
