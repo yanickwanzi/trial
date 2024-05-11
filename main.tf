@@ -14,9 +14,8 @@ module "vpc" {
 module "eks" {
   source = "./modules/eks-cluster"
 
-  main-region = var.main-region
-  rolearn     = var.rolearn
-
+  main-region     = var.main-region
+  rolearn         = var.rolearn
   vpc_id          = module.vpc.vpc_id
   private_subnets = module.vpc.private_subnets
 }
