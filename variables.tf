@@ -25,7 +25,7 @@ variable "cluster_name" {
 
 variable "rolearn" {
   description = "Add admin role to the aws-auth configmap"
-  default = ""
+  default = "arn:aws:iam::322266404742:user/Ndiforamang_Fusi"
 }
 
 ################################################################################
