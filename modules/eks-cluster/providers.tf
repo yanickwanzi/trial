@@ -9,7 +9,7 @@ terraform {
 
 
 provider "aws" {
-  profile = var.profile
+  # profile = var.profile
   region  = var.main-region
   alias   = "shi-awslab"
 }
