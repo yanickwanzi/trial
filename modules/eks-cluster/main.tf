@@ -10,7 +10,7 @@ module "eks" {
   cluster_version = "1.28"
 
   providers = {
-    aws = aws.us-east-2
+    aws = aws.us-west-2
   }
 
   cluster_endpoint_public_access = true
