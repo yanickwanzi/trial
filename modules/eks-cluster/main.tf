@@ -6,8 +6,8 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 19.0"
 
-  cluster_name    = "tf-cluster"
-  cluster_version = "1.27"
+  cluster_name    = "dominion-cluster"
+  cluster_version = "1.28"
 
   providers = {
     aws = aws.us-east-2
@@ -47,15 +47,15 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
-    blue = {
-	min_size     = 1
-	max_size     = 10
-	desired_size = 1
-	}
-    green = {
+    node-group-1 = {
       min_size     = 1
       max_size     = 10
-      desired_size = 1
+      desired_size = 2
+    }
+    node-group-2 = {
+      min_size     = 1
+      max_size     = 10
+      desired_size = 2
 
       instance_types = ["t3.large"]
       capacity_type  = "SPOT"
