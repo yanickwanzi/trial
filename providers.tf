@@ -1,9 +1,20 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.49.0"
+    }
+  }
+}
 
 provider "aws" {
+  provider "aws" {
   profile = var.profile
   region  = var.main-region
-  alias   = "us-west-2"
+  alias   = "shi-awslab"
 }
+}
+
 
 provider "kubernetes" {
   host                   = module.eks.cluster_endpoint
