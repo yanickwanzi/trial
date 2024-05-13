@@ -3,8 +3,7 @@
 ################################################################################
 
 module "vpc" {
-  source      = "./modules/vpc"
-  main-region = var.main-region
+  source = "./modules/vpc"
 }
 
 ################################################################################
@@ -12,9 +11,7 @@ module "vpc" {
 ################################################################################
 
 module "eks" {
-  source = "./modules/eks-cluster"
-
-  main-region     = var.main-region
+  source          = "./modules/eks-cluster"
   rolearn         = var.rolearn
   vpc_id          = module.vpc.vpc_id
   private_subnets = module.vpc.private_subnets
@@ -25,9 +22,7 @@ module "eks" {
 ################################################################################
 
 module "aws_alb_controller" {
-  source = "./modules/aws-alb-controller"
-
-  main-region  = var.main-region
+  source       = "./modules/aws-alb-controller"
   env_name     = var.env_name
   cluster_name = var.cluster_name
 
