@@ -12,6 +12,7 @@ module "vpc" {
 
 module "eks" {
   source          = "./modules/eks-cluster"
+  depends_on      = [module.vpc]
   rolearn         = var.rolearn
   vpc_id          = module.vpc.vpc_id
   private_subnets = module.vpc.private_subnets
@@ -22,7 +23,7 @@ module "eks" {
 ################################################################################
 
 module "aws_alb_controller" {
-  depends_on   = [module.vpc, module.eks]
+  depends_on   = [module.eks]
   source       = "./modules/aws-alb-controller"
   env_name     = var.env_name
   cluster_name = var.cluster_name
