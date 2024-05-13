@@ -61,8 +61,7 @@ pipeline {
                         subject: 'ABORTED: Build ${env.JOB_NAME}', 
                         body: '''Build was aborted ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}'''
                 }
-            }    
+               }    
             }
-        }
-    }        
+        }       
 }   
