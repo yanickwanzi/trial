@@ -40,20 +40,20 @@ pipeline {
         stage ('5. Email Notification') {
             steps {
                 failure {
-                    mail to: '${env.EMAIL_TO}',
-                        cc : '${env.EMAIL_TO}',
+                    mail to: '$EMAIL_TO',
+                        cc : '$EMAIL_TO',
                         subject: 'FAILED: Build ${env.JOB_NAME}', 
                         body: '''Build failed ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}.\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}'''
                    }           
                 success{
-                    mail to: '${env.EMAIL_TO}',
-                        cc : '${env.EMAIL_TO}',
+                    mail to: '$EMAIL_TO',
+                        cc : '$EMAIL_TO',
                         subject: 'SUCCESSFUL: Build ${env.JOB_NAME}' 
                         body: '''Build Successful ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}'''
                    }               
                 aborted{
-                    mail to: '${env.EMAIL_TO}',
-                        cc : '${env.EMAIL_TO}',
+                    mail to: '$EMAIL_TO',
+                        cc : '$EMAIL_TO',
                         subject: 'ABORTED: Build ${env.JOB_NAME}' 
                         body: '''Build was aborted ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}'''
                 }
