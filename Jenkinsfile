@@ -16,7 +16,7 @@ pipeline {
         stage('Terraform plan') {
             steps {
                 echo 'terraform plan phase'
-                sh 'terraform plan'
+                sh 'AWS_REGION=us-west-2 terraform plan'
             }
         }
         stage('Manual Approval') {
@@ -34,7 +34,7 @@ pipeline {
         stage('Terraform Deploy') {              
             steps { 
                 echo 'Terraform ${params.deploy_choice} phase'  
-                sh "terraform ${params.deploy_choice} --auto-approve"
+                sh "AWS_REGION=us-west-2 terraform ${params.deploy_choice} --auto-approve"
             }
           }
       }
