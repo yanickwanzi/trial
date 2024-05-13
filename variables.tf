@@ -8,10 +8,10 @@ variable "profile" {
   default = ""
 }
 
-variable "main-region" {
-  type    = string
-  default = "us-west-2"
-}
+# variable "main-region" {
+#   type    = string
+#   default = "us-west-2"
+# }
 
 
 ################################################################################
