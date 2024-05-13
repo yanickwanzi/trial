@@ -44,17 +44,13 @@ pipeline {
                         cc : '$EMAIL_TO',
                         subject: 'FAILED: Build ${env.JOB_NAME}', 
                         body: '''Build failed ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}.\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}'''
-                   } 
-                }
-            steps  {          
+                   }        
                 success{
                     mail to: '$EMAIL_TO',
                         cc : '$EMAIL_TO',
                         subject: 'SUCCESSFUL: Build ${env.JOB_NAME}', 
                         body: '''Build Successful ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}'''
-                   } 
-                   }
-            steps {              
+                   }              
                 aborted{
                     mail to: '$EMAIL_TO',
                         cc : '$EMAIL_TO',
@@ -62,6 +58,6 @@ pipeline {
                         body: '''Build was aborted ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}'''
                 }
                }    
-            }
-        }       
+          }
+     }       
 }   
