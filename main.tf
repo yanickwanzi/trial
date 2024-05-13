@@ -23,7 +23,6 @@ module "eks" {
 ################################################################################
 
 module "aws_alb_controller" {
-  depends_on   = [module.eks]
   source       = "./modules/aws-alb-controller"
   env_name     = var.env_name
   cluster_name = var.cluster_name
