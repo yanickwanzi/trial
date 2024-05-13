@@ -9,6 +9,11 @@ module "eks" {
   cluster_name    = "dominion-cluster"
   cluster_version = "1.28"
 
+  resolve_conflicts {
+    on_create = "OVERWRITE"
+    on_update = "PRESERVE"
+  }
+
   cluster_endpoint_public_access = true
 
   create_kms_key              = false
