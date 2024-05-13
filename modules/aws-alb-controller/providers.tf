@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "aws" {
-  region  = var.main-region
-  alias   = "shi-awslab"
+  region = var.main-region
+  alias  = "us-west-2"
 }
 

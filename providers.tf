@@ -1,16 +1,15 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "5.49.0"
     }
   }
 }
 
 provider "aws" {
-  # profile = var.profile
-  region  = var.main-region
-  alias   = "shi-awslab"
+  region = var.main-region
+  alias  = "us-west-2"
 }
 
 
