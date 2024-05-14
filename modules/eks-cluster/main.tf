@@ -7,12 +7,7 @@ module "eks" {
   version = "~> 19.0"
 
   cluster_name    = "dominion-cluster"
-  cluster_version = "1.28"
-
-  resolve_conflicts {
-    on_create = "OVERWRITE"
-    on_update = "PRESERVE"
-  }
+  cluster_version = "1.27"
 
   cluster_endpoint_public_access = true
 
