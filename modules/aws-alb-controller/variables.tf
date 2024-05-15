@@ -8,8 +8,7 @@ variable "main-region" {
 }
 
 variable "env_name" {
-  type    = string
-  default = "Dev"
+  type = string
 }
 
 variable "cluster_name" {

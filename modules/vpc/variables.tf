@@ -4,5 +4,4 @@
 
 variable "main-region" {
   type    = string
-  default = "us-west-2"
 }

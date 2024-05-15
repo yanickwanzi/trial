@@ -2,10 +2,6 @@
 # General Variables from root module
 ################################################################################
 
-# variable "main-region" {
-#   type = string
-#   default = "us-west-2"
-# }
 
 ################################################################################
 # Variables from other Modules

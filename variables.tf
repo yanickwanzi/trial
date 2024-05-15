@@ -3,15 +3,10 @@
 # Default Variables
 ################################################################################
 
-variable "profile" {
+variable "main-region" {
   type    = string
-  default = ""
+  default = "us-west-2"
 }
-
-# variable "main-region" {
-#   type    = string
-#   default = "us-west-2"
-# }
 
 
 ################################################################################
@@ -20,12 +15,11 @@ variable "profile" {
 
 variable "cluster_name" {
   type    = string
-  default = "tf-cluster"
+  default = "dominion-cluster"
 }
 
 variable "rolearn" {
   description = "Add admin role to the aws-auth configmap"
-  default = "arn:aws:iam::322266404742:role/terraform-create-role"
 }
 
 ################################################################################
