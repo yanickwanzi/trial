@@ -76,3 +76,17 @@ module "eks" {
   }
 }
 
+#creating namespaces
+resource "kubernetes_namespace" "gateway" {
+  metadata {
+    annotations = {
+      name = "gateway"
+    }
+
+    labels = {
+      app = "webapp"
+    }
+
+    name = "terraform-namespace"
+  }
+}
