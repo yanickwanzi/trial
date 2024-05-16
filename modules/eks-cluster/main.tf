@@ -6,7 +6,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "~> 19.0"
 
-  cluster_name    = "tf-cluster"
+  cluster_name    = var.cluster_name
   cluster_version = "1.27"
 
   cluster_endpoint_public_access = true
@@ -43,15 +43,15 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
-    blue = {
-	min_size     = 1
-	max_size     = 10
-	desired_size = 1
-	}
-    green = {
+    node-group-01 = {
       min_size     = 1
       max_size     = 10
-      desired_size = 1
+      desired_size = 2
+    }
+    node-group-02 = {
+      min_size     = 1
+      max_size     = 10
+      desired_size = 2
 
       instance_types = ["t3.large"]
       capacity_type  = "SPOT"

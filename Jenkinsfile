@@ -35,6 +35,8 @@ pipeline {
             steps { 
                 echo 'Terraform ${params.deploy_choice} phase'  
                 sh "AWS_REGION=us-west-2 terraform ${params.deploy_choice} --auto-approve"
+                sh "aws eks --region us-west-2 update-kubeconfig --name dominion-cluster && export KUBE_CONFIG_PATH=~/.kube/config"
+                sh "AWS_REGION=us-west-2 terraform ${params.deploy_choice} --auto-approve"
             }
                 }
         stage ('5. Email Notification') {
@@ -56,7 +58,7 @@ pipeline {
                         cc : '$EMAIL_TO',
                         subject: 'ABORTED: Build ${env.JOB_NAME}', 
                         body: '''Build was aborted ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}'''
-                }
+                   }
                }    
           }
      }       
