@@ -87,6 +87,6 @@ resource "kubernetes_namespace" "gateway" {
       app = "webapp"
     }
 
-    name = "terraform-namespace"
+    name = "gateway"
   }
 }
