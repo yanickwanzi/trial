@@ -36,29 +36,17 @@ pipeline {
                 echo 'Terraform ${params.deploy_choice} phase'  
                 sh "AWS_REGION=us-west-2 terraform ${params.deploy_choice}  -target=module.vpc -target=module.eks --auto-approve"
                 sh "aws eks --region us-west-2 update-kubeconfig --name dominion-cluster && export KUBE_CONFIG_PATH=~/.kube/config"
-                sh "AWS_REGION=us-west-2 terraform ${params.deploy_choice} -target=module.aws-alb-controller --auto-approve"
+                sh "AWS_REGION=us-west-2 terraform ${params.deploy_choice} --auto-approve"
             }
                 }
         stage ('5. Email Notification') {
             steps {
-                failure {
-                    mail to: '$EMAIL_TO',
-                        cc : '$EMAIL_TO',
-                        subject: 'FAILED: Build ${env.JOB_NAME}', 
-                        body: '''Build failed ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}.\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}'''
-                   }        
-                success{
-                    mail to: '$EMAIL_TO',
-                        cc : '$EMAIL_TO',
-                        subject: 'SUCCESSFUL: Build ${env.JOB_NAME}', 
-                        body: '''Build Successful ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}'''
-                   }              
-                aborted{
-                    mail to: '$EMAIL_TO',
-                        cc : '$EMAIL_TO',
-                        subject: 'ABORTED: Build ${env.JOB_NAME}', 
-                        body: '''Build was aborted ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}'''
-                   }
+               mail bcc: 'fusisoft@gmail.com', body: '''Build was aborted ${env.JOB_NAME} build no: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}
+               Let me know if the changes look okay.
+               Thanks,
+               Dominion System Technologies,
+              +1 (313) 413-1477''', cc: 'fusisoft@gmail.com', from: '', replyTo: '', subject: 'Build ${env.JOB_NAME} is over!!!', to: 'fusisoft@gmail.com'
+                          
                }    
           }
      }       
