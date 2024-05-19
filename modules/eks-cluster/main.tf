@@ -90,3 +90,18 @@ resource "kubernetes_namespace" "gateway" {
     name = "gateway"
   }
 }
+
+
+resource "kubernetes_namespace" "directory" {
+  metadata {
+    annotations = {
+      name = "directory"
+    }
+
+    labels = {
+      app = "webapp"
+    }
+
+    name = "directory"
+  }
+}
