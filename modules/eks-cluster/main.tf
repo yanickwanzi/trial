@@ -105,3 +105,20 @@ resource "kubernetes_namespace" "directory" {
     name = "directory"
   }
 }
+
+
+
+resource "kubernetes_namespace" "analytics" {
+  metadata {
+    annotations = {
+      name = "analytics"
+    }
+
+    labels = {
+      app = "webapp"
+    }
+
+    name = "analytics"
+  }
+}
+
