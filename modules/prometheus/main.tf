@@ -8,10 +8,6 @@ module "prometheus" {
   workspace_alias  = "eks-workspace"
   create_workspace = true
 
-  providers = {
-    aws = aws.us-east-2
-  }
-
   alert_manager_definition = <<-EOT
   alertmanager_config: |
     route:

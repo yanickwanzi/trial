@@ -76,4 +76,5 @@ variable "sso_admin_group_id" {
   description = "AWS_SSO Admin Group ID"
   type        = string
   sensitive   = true
+  default     = "b4f8f4f8-e011-7046-0637-993dc10edd76"
 }

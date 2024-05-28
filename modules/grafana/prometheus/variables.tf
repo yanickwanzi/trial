@@ -1,11 +1,6 @@
 ################################################################################
 # General Variables from root module
 ################################################################################
-
-variable "profile" {
-  type = string
-}
-
 variable "main-region" {
   type = string
 }
@@ -20,7 +15,7 @@ variable "env_name" {
 
 variable "cluster_name" {
   type    = string
-  default = "tf-cluster"
+  default = "dominion-cluster"
 }
 
 variable "oidc_provider_arn" {

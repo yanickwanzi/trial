@@ -1,10 +1,6 @@
 module "managed_grafana" {
   source = "terraform-aws-modules/managed-service-grafana/aws"
 
-  providers = {
-    aws = aws.us-east-2
-  }
-
   # Workspace
   name                      = "eks-grafana"
   description               = "AWS Managed Grafana service"

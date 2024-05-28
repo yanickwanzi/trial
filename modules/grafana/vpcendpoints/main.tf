@@ -6,7 +6,6 @@ resource "aws_security_group" "allow_tls_grafana" {
   name        = "allow_tls_from_grafana"
   description = "Allow TLS inbound traffic from Grafana"
   vpc_id      = var.vpc_id
-  provider    = aws.us-east-2
   ingress {
     description     = "TLS from Grafana Security group"
     from_port       = 443
