@@ -1,7 +1,6 @@
 module "managed_grafana" {
   source = "terraform-aws-modules/managed-service-grafana/aws"
 
-  # Workspace
   name                      = "eks-grafana"
   description               = "AWS Managed Grafana service"
   account_access_type       = "CURRENT_ACCOUNT"
@@ -13,22 +12,26 @@ module "managed_grafana" {
   create_workspace      = true
   create_iam_role       = true
   create_security_group = true
-  associate_license     = false
-  license_type          = "ENTERPRISE_FREE_TRIAL"
+  associate_license     = true  # Ensure this is set appropriately
+  license_type          = "ENTERPRISE"  # Adjust license type as needed
+
   vpc_configuration = {
     subnet_ids = var.private_subnets
   }
 
   security_group_rules = {
-    egress = {
-      from_port        = 0
-      to_port          = 0
-      protocol         = "-1"
-      cidr_blocks      = ["0.0.0.0/0"]
-      ipv6_cidr_blocks = ["::/0"]
-    }
+    egress = [
+      {
+        from_port        = 443
+        to_port          = 443
+        protocol         = "tcp"
+        cidr_blocks      = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
+      }
+      // Add more rules as needed
+    ]
   }
-  # Workspace API keys
+
   workspace_api_keys = {
     viewer = {
       key_name        = "viewer"
@@ -47,11 +50,9 @@ module "managed_grafana" {
     }
   }
 
-
-  # Role associations
   role_associations = {
     "ADMIN" = {
-      "group_ids" = [var.sso_admin_group_id]
+      group_ids = [var.sso_admin_group_id]
     }
   }
 
