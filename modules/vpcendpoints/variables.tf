@@ -24,10 +24,10 @@ variable "private_subnets" {
   type        = list(string)
 }
 
-variable "grafana_security_group_id" {
-  description = "Grafana Security Group ID"
-  type        = string
-}
+# variable "grafana_security_group_id" {
+#   description = "Grafana Security Group ID"
+#   type        = string
+# }
 
 ################################################################################
 # Variables from other Modules
