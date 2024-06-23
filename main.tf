@@ -39,13 +39,13 @@ module "aws_alb_controller" {
 # Managed Grafana Module
 ################################################################################
 
-module "managed_grafana" {
-  source   = "./modules/grafana"
-  env_name = var.env_name
-  main-region  = var.main-region
-  private_subnets    = module.vpc.private_subnets
-  sso_admin_group_id = var.sso_admin_group_id
-}
+# module "managed_grafana" {
+#   source   = "./modules/grafana"
+#   env_name = var.env_name
+#   main-region  = var.main-region
+#   private_subnets    = module.vpc.private_subnets
+#   sso_admin_group_id = var.sso_admin_group_id
+# }
 
 
 
