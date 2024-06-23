@@ -19,10 +19,7 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "private_subnets" {
-  description = "Private subnets to create grafana workspace"
-  type        = list(string)
-}
+
 
 # variable "grafana_security_group_id" {
 #   description = "Grafana Security Group ID"
