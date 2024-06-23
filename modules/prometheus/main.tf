@@ -1,7 +1,3 @@
-################################################################################
-# Prometheus WorkSpace
-################################################################################
-
 module "prometheus" {
   source = "terraform-aws-modules/managed-service-prometheus/aws"
 
@@ -40,10 +36,6 @@ module "prometheus" {
   }
 }
 
-################################################################################
-# Prometheus Namespace
-################################################################################
-
 resource "kubernetes_namespace" "prometheus-namespace" {
   metadata {
     annotations = {
@@ -58,10 +50,6 @@ resource "kubernetes_namespace" "prometheus-namespace" {
   }
 }
 
-################################################################################
-# Prometheus Role
-################################################################################
-
 module "prometheus_role" {
   source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
 
@@ -75,12 +63,7 @@ module "prometheus_role" {
       namespace_service_accounts = ["${kubernetes_namespace.prometheus-namespace.metadata[0].name}:amp-iamproxy-ingest-role"]
     }
   }
-
 }
-
-################################################################################
-# Prometheus Service Account
-################################################################################
 
 resource "kubernetes_service_account" "service-account" {
   metadata {
@@ -95,11 +78,6 @@ resource "kubernetes_service_account" "service-account" {
     }
   }
 }
-
-
-################################################################################
-# Install Prometheus With Helm
-################################################################################
 
 resource "helm_release" "prometheus" {
   name       = "prometheus-community"
@@ -124,6 +102,4 @@ resource "helm_release" "prometheus" {
     name  = "server.remoteWrite[0].sigv4.region"
     value = var.main-region
   }
-
 }
-
